@@ -21,7 +21,7 @@ public class BoxManager : MonoBehaviour {
             Destroy (gameObject);
         }
         //Pega objeto Launcher
-        launcher = GameObject.Find ("Launcher");
+        launcher = GameObject.Find ("EndPosition");
 
     }
 
