@@ -9,7 +9,6 @@ public class TextManager : MonoBehaviour {
     string allText;
     List<string> eachline;
     public string[] objectsToBeMade;
-    string a = "rola";
 
     void Start () {
 

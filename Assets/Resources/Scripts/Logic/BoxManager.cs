@@ -8,7 +8,7 @@ public class BoxManager : MonoBehaviour {
     public static BoxManager instance = null;
 
     //Inicialização dos Objetos e variáveis
-    GameObject launcher;
+    public GameObject launcher;
     public GameObject box;
     public int wonBoxes, lostBoxes;
 
@@ -20,8 +20,6 @@ public class BoxManager : MonoBehaviour {
         else if (instance != this) {
             Destroy (gameObject);
         }
-        //Pega objeto Launcher
-        launcher = GameObject.Find ("EndPosition");
 
     }
 
@@ -29,18 +27,26 @@ public class BoxManager : MonoBehaviour {
 	void LateUpdate () {
         if ((Input.anyKeyDown)) {
             InstantiateBox ();
+            
         }
-	}
+    }
 
     // Instacia a caixa ao clicar
     void OnMouseDown () {
         InstantiateBox ();
+        
 
     }
 
     // Método de instaciar as caixas
     void InstantiateBox () {
+        launcher.GetComponentInParent<LauncherAnim> ().LauncherOn ();
         Instantiate (box, launcher.transform.position, Quaternion.identity);
+        StartCoroutine (ResetLauncher ());
     }
-		
+
+    IEnumerator ResetLauncher () {
+        yield return new WaitForSeconds (1f);
+        launcher.GetComponentInParent<LauncherAnim> ().LauncherOff ();
+    }
 }

@@ -3,21 +3,20 @@ using System.Collections;
 
 public class LauncherAnim : MonoBehaviour {
 
-	private Animator a;
+	Animator a;
 
 	void Start () {
 		a = GetComponent <Animator> ();
-	}
 
-	void OnMouseDown (){
-		Click ();
-	}
+    }
 
-	public void Click () {
-		a.SetBool ("a", true);
-	}
+    public void LauncherOn () {
+        a.SetBool ("launcher", true);
 
-	public void Back () {
-		a.SetBool ("a", false);
-	}
+    }
+
+    public void LauncherOff () {
+        a.SetBool ("launcher", false);
+    }
+
 }

@@ -36,6 +36,11 @@ public class Box : MonoBehaviour {
         }
     }
 
+    IEnumerator ResetLauncher (GameObject a) {
+        yield return new WaitForSeconds (.25f);
+        a.GetComponentInParent<EndPhaseAnim> ().EndPhaseOff ();
+    }
+
     //Ao colidir com o trigger 
     void OnTriggerEnter2D (Collider2D other) {
         //trigger do cano do fim da fase
@@ -43,6 +48,8 @@ public class Box : MonoBehaviour {
             //Destroi e soma um nas caixas ganhas
             Destroy (this.gameObject);
             BoxManager.instance.wonBoxes++;
+            other.gameObject.GetComponent<EndPhaseAnim> ().EndPhaseOn ();
+            StartCoroutine (ResetLauncher (other.gameObject));
         }
         //trigger da fornalha
         if (other.gameObject.name == "Furnace") {
